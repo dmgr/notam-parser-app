@@ -1,0 +1,16 @@
+<table class="table table-striped">
+  <tr>
+    <th>ICAO code</th>
+    <% %w[MON TUE WED THU FRI SAT SUN].each do |wday| %>
+      <th><%= wday %></th>
+    <% end %>
+  </tr>
+  <% @notam_records.each do |record| %>
+    <tr>
+      <td><%= record.icao_code %></td>
+      <% record.opening_hours.each do |wday, opening_hours| %>
+        <td><%= opening_hours.join('<br/>').html_safe %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
